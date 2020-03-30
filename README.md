@@ -5,9 +5,7 @@ Predicting masked areas of seen images based on the RF gaussians * brain signals
 
 
 <b> Gaussian RFs </b> are made (& visualized) in the notebook `multivariate_gaussian.ipynb`. \
-
 `RF_modules.py` contains the functions used for making the RF gaussians. \
-
 Then the images were cropped using `cropping_images.ipynb`. 
 
 The <b>training loop </b>can be found in `RFconfidence_mask_split.py`:
