@@ -4,7 +4,11 @@ Predicting masked areas of seen images based on the RF gaussians * brain signals
 ![imgcount](/imgs_count.png)
 
 
-<b> Gaussian RFs </b> are made (& visualized) in the notebook `multivariate_gaussian.ipynb`. Then the images were cropped using `cropping_images.ipynb`. 
+<b> Gaussian RFs </b> are made (& visualized) in the notebook `multivariate_gaussian.ipynb`. \
+
+`RF_modules.py` contains the functions used for making the RF gaussians. \
+
+Then the images were cropped using `cropping_images.ipynb`. 
 
 The <b>training loop </b>can be found in `RFconfidence_mask_split.py`:
 
@@ -17,11 +21,9 @@ The <b>models</b> used to train can be found in the `model_file_old.py` and `mod
 - `model_file_old.py` is the original model with nn.ConvTranspose2d().
 
 - `model_file.py` contains unpooling layers instead and is a larger model. It's inspired by the DeconvNet from this [project](https://github.com/HyeonwooNoh/DeconvNet/tree/master/model).
-
 `module_split.py` contains the defined loss (VGG) and the dataloading functions.
-`RF_modules.py` contains the functions used for making the RF gaussians. 
 
+#### Notebooks:
 `load_model_2.ipynb` loads the trained model with 2 channels and visualizes predictions. \
 `load_model_191.ipynb` loads the trained model with 191 channels and visualizes predictions.
-
 `train_on_one.ipynb` shows the model which is trained on one image (to induce overfitting). 
