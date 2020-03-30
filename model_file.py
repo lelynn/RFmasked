@@ -10,7 +10,7 @@ class ResblocksDeconv(nn.Module):
         super(ResblocksDeconv, self).__init__()
 #         conv 1_1:
         self.conv1_1 = nn.Conv2d(in_channels, 64, kernel_size=3, stride=1, padding=1)
-        self.bn1_1 = nn.BatchNorm2d(64) # Maybe eps = 0.001
+        self.bn1_1 = nn.BatchNorm2d(64)
 #         conv 1_2
         self.conv1_2 = nn.Conv2d(64, 64, kernel_size=3, stride=1, padding=1)
         self.bn1_2 = nn.BatchNorm2d(64)
@@ -76,8 +76,9 @@ class ResblocksDeconv(nn.Module):
         
 #         7 x 7 
 #         unpool5
-        self.unpool5 = nn.MaxUnpool2d(2,2) # 
-#         14 x 14 (we want 15)
+        self.unpool5 = nn.MaxUnpool2d(2,2) 
+
+#         _ x _
 #         deconv5_1
         self.deconv5_1 = nn.Conv2d(512, 512, kernel_size=3, stride=1, padding=1)
         self.debn5_1 = nn.BatchNorm2d(512)
@@ -141,14 +142,11 @@ class ResblocksDeconv(nn.Module):
         self.deconv1_2 = nn.Conv2d(32, 3, kernel_size=3, stride=1, padding=1)
         self.debn1_2 = nn.BatchNorm2d(3)
         
-        
-        
-        
+
         self.in_channels = in_channels
         self.outsize = outsize
 
     def __call__(self, x):
-#         print('x:', x.shape)
         h = self.conv1_1(x)
         h = self.bn1_1(h)
         h = F.relu(h)
@@ -157,7 +155,6 @@ class ResblocksDeconv(nn.Module):
         h = F.relu(h)
         h, i1 = self.maxp1(h)
         size1 = h.size()
-#         print('conv1_2:', h.shape)
         
         h = self.conv2_1(h)
         h = self.bn2_1(h)
@@ -167,7 +164,6 @@ class ResblocksDeconv(nn.Module):
         h = F.relu(h)
         h, i2 = self.maxp2(h)
         size2 = h.size()
-#         print('conv2_2:', h.shape)
         
         h = self.conv3_1(h)
         h = self.bn3_1(h)
@@ -180,7 +176,6 @@ class ResblocksDeconv(nn.Module):
         h = F.relu(h)
         h, i3 = self.maxp3(h)
         size3 = h.size()
-#         print('conv3:', h.shape)
         
         h = self.conv4_1(h)
         h = self.bn4_1(h)
@@ -192,9 +187,7 @@ class ResblocksDeconv(nn.Module):
         h = self.bn4_3(h)
         h = F.relu(h)
         h, i4 = self.maxp4(h)
-        size4 = h.size()
-#         print('conv4:', h.shape)
-        
+        size4 = h.size()        
         
         h = self.conv5_1(h)
         h = self.bn5_1(h)
@@ -205,11 +198,8 @@ class ResblocksDeconv(nn.Module):
         h = self.conv5_3(h)
         h = self.bn5_3(h)
         h = F.relu(h)
-#         h, i5 = self.maxp5(h)
         h, i5 = self.maxp5(h)
-        size5 = h.size()
-#         print('conv5:', h.shape)
-        
+        size5 = h.size()        
 
         h = self.residualBlock_1(h)
         h = self.residualBlock_2(h)
@@ -218,9 +208,7 @@ class ResblocksDeconv(nn.Module):
         h = self.residualBlock_5(h)
 
 
-#         print('resblock:', h.shape)
         h = self.unpool5(h, i5, output_size = size4)
-#         print('unpool5_want15', h.shape)
         h = self.deconv5_1(h)
         h = self.debn5_1(h)
         h = F.relu(h)
@@ -230,10 +218,8 @@ class ResblocksDeconv(nn.Module):
         h = self.deconv5_3(h)
         h = self.debn5_3(h)
         h = F.relu(h)
-#         print('deconv5:', h.shape)
         
         h = self.unpool4(h, i4)
-#         print('unpool4', h.shape)
         h = self.deconv4_1(h)
         h = self.debn4_1(h)
         h = F.relu(h)
@@ -243,10 +229,8 @@ class ResblocksDeconv(nn.Module):
         h = self.deconv4_3(h)
         h = self.debn4_3(h)
         h = F.relu(h)
-#         print('deconv4:', h.shape)
 
         h = self.unpool3(h, i3)
-#         print('unpool3', h.shape)
         h = self.deconv3_1(h)
         h = self.debn3_1(h)
         h = F.relu(h)
@@ -256,36 +240,26 @@ class ResblocksDeconv(nn.Module):
         h = self.deconv3_3(h)
         h = self.debn3_3(h)
         h = F.relu(h)
-#         print('deconv3:', h.shape)
 
         
         h = self.unpool2(h, i2)
-#         print('unpool2', h.shape)
         h = self.deconv2_1(h)
         h = self.debn2_1(h)
         h = F.relu(h)
         h = self.deconv2_2(h)
         h = self.debn2_2(h)
         h = F.relu(h)
-#         print('deconv2:', h.shape)
         
         
         h = self.unpool1(h, i1)
-#         print('unpool1', h.shape)
         h = self.deconv1_1(h)
         h = self.debn1_1(h)
         h = F.relu(h)
         h = self.deconv1_2(h)
         h = self.debn1_2(h)
         h = F.relu(h)
-#         print('deconv1:', h.shape)
-        
 
         y = (torch.tanh(h) + 1) / 2
-#         with torch.autograd.set_detect_anomaly(True):
-#             y =torch.sigmoid(h)
-
-#         print('final_shape:', y.shape)
 
         return y
     
