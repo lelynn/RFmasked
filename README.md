@@ -25,5 +25,5 @@ The <b>models</b> used to train can be found in the `model_file_old.py` and `mod
 
 #### Notebooks:
 `load_model_2.ipynb` loads the trained model with 2 channels and visualizes predictions. \
-`load_model_191.ipynb` loads the trained model with 191 channels and visualizes predictions.
+`load_model_191.ipynb` loads the trained model with 191 channels and visualizes predictions. \
 `train_on_one.ipynb` shows the model which is trained on one image (to induce overfitting). 
