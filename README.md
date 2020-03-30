@@ -9,5 +9,5 @@ The <b>models</b> used to train can be found in the `model_file_old.py` and `mod
 
 `RF_modules.py` contains the functions used for making the RF gaussians. 
 
-`load_model_2.ipynb` loads the trained model with 2 channels and visualizes predictions.
+`load_model_2.ipynb` loads the trained model with 2 channels and visualizes predictions. \
 `load_model_191.ipynb` loads the trained model with 191 channels and visualizes predictions.
