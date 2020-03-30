@@ -1,6 +1,8 @@
 # RFmasked
 
-Predicting masked areas of seen images based on the RF gaussians * brain signals. In this version, the provided test data of the dataset was not used. The privided training set was split using `splitting_data.ipynb` to create training and test sets. 
+Predicting masked areas of seen images based on the RF gaussians * brain signals. In this version, the provided test data of the dataset was not used. The privided training set was split using `splitting_data.ipynb` to create training and test sets. That is because the test set contained many repeats as shown in the below graph:
+![/img_count.png]
+
 
 <b> Gaussian RFs </b> are made (& visualized) in the notebook `multivariate_gaussian.ipynb`. Then the images were cropped using `cropping_images.ipynb`. 
 
