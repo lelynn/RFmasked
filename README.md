@@ -18,7 +18,7 @@ The <b>models</b> used to train can be found in the `model_file_old.py` and `mod
 
 - `model_file.py` contains unpooling layers instead and is a larger model. It's inspired by the DeconvNet from this [project](https://github.com/HyeonwooNoh/DeconvNet/tree/master/model).
 
-`module_split.py` contains the loss and the dataloaders.
+`module_split.py` contains the defined loss (VGG) and the dataloading functions.
 `RF_modules.py` contains the functions used for making the RF gaussians. 
 
 `load_model_2.ipynb` loads the trained model with 2 channels and visualizes predictions. \
