@@ -1,5 +1,6 @@
 # RFmasked
-A model trained to predict specific areas of seen images based on the RF gaussians * brain signals.
+
+Predicting masked areas of seen images based on the RF gaussians * brain signals.
 
 <b> Gaussian RFs </b> are made (& visualized) in the notebook `multivariate_gaussian.ipynb`.
 
