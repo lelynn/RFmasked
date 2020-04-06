@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "synthetic_data.py", line 21, in <module>
+    import model_file
+ModuleNotFoundError: No module named 'model_file'
+Traceback (most recent call last):
+  File "synthetic_data.py", line 21, in <module>
+    import model_file
+ModuleNotFoundError: No module named 'model_file'
+Traceback (most recent call last):
+  File "synthetic_data.py", line 21, in <module>
+    import model_file
+ModuleNotFoundError: No module named 'model_file'
+Traceback (most recent call last):
+  File "synthetic_data.py", line 21, in <module>
+    import model_file
+ModuleNotFoundError: No module named 'model_file'
+Traceback (most recent call last):
+  File "synthetic_data.py", line 21, in <module>
+    import model_file
+ModuleNotFoundError: No module named 'model_file'
