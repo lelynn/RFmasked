@@ -2,7 +2,7 @@ import synthetic_fun
 from tqdm import tqdm
 import numpy as np
 
-synthetic_fun.make_unique_synth('training')
+# synthetic_fun.make_unique_synth('training')
 
 all_batches = []
 set_t = 'training'

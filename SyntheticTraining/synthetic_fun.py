@@ -38,7 +38,7 @@ def make_unique_synth(set_t):
         # data_index = data_indices[0]
 
             synth_signal = nn_seen[data_index][:,:,:, np.newaxis].repeat(191, axis=3)
-            gaus_expand_to_batch = gaus.expand([191, 240, 240])
+#             gaus_expand_to_batch = gaus.expand([191, 240, 240])
             synth_signal_sum4 = synth_signal.transpose(3,0,1,2).sum(3) # merge color dimensions
 
             dot_number = (gaus_expand_to_batch * synth_signal_sum4).sum((1,2))
