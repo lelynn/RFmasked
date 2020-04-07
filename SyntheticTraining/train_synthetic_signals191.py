@@ -11,22 +11,6 @@ import RF_module as RF
 
 import os
 
-def make_iterator_unique(dot_number, set_t, batch_size, shuffle):
-    ''' 
-    Makes an iterator for this experiment. It allows iteration through indices and the signals
-    
-    Returns an iterator.
-    '''
-        
-    img_indexes = np.load(f'../../sorted_data/LFP/{set_t}/index_{set_t}_LFP_split.npy').astype(np.int)
-    img_indexes = np.unique(img_indexes)
-    data_indices = torch.from_numpy(img_indexes)
-    
-    dot_number = torch.from_numpy(dot_number)
-    data = dataset.TensorDataset(dot_number, data_indices)
-
-    return dataset.DataLoader(data, batch_size, shuffle = shuffle)
-
 runname = 'synthetic_loaddot191'
 device = 1
 cuda0 = torch.device(f'cuda:{device}')
@@ -71,14 +55,14 @@ if __name__ == '__main__':
     # ------
     # Training
     # ------
-    dot_numbers_train = np.load(f'../../sorted_data/LFP/training/training_synth191final.npy')
-    training_iterator = make_iterator_unique(dot_numbers_train, 'training', batch_size, shuffle = True)
+    dot_numbers_train = np.load(f'training/training_synth191final.npy')
+    training_iterator = module.make_iterator_unique(dot_numbers_train, 'training', batch_size, shuffle = True)
     
     # ------
     # Testing
     # ------
-    dot_numbers_test = np.load(f'../../sorted_data/LFP/testing/testing_synth191final.npy')
-    testing_iterator = make_iterator_unique(dot_numbers_test, 'testing', batch_size, shuffle = False)
+    dot_numbers_test = np.load(f'testing/testing_synth191final.npy')
+    testing_iterator = module.make_iterator_unique(dot_numbers_test, 'testing', batch_size, shuffle = False)
 
     # EPOCHS
     losses_train = []

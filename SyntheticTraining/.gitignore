@@ -1,6 +1,8 @@
-
 testing/
-training/ 
+training/
+RFfit.mat
+testing/
+training/
 cropped_images_tosplit.npy
 RFfit.mat
 multivariate_gaussians240_cropped.npy

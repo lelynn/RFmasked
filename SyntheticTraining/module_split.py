@@ -144,20 +144,7 @@ def load_gausdata():
     gaus = torch.from_numpy(gaus).float()
     return gaus
 
-def load_LFPdata(set_t):
-    
-    '''
-    
-    Loads the LFP data.
-    -------------------
-    set_t: 'training' for loading training data, 'testing' for testing data.
-    -------------------
-    
-    Returns float32. 
-    '''
-    
-    nn_data = np.load(f'../../sorted_data/LFP/{set_t}/LFP_{set_t}_splitted.npy')
-    return nn_data.astype('float32')
+
 
 def load_ydata():
     '''Loads targets.
@@ -168,22 +155,27 @@ def load_ydata():
     Returns a torch.Tensor()'''
 
 #     targets = np.load(f'splitcrop_{set_t}_im.npy')
-    targets = np.load(f'cropped_images_training.npy')
+    targets = np.load(f'cropped_images_tosplit.npy')
 
     return targets
 
   
-# def make_iterator(nn_data, img_indexes, set_t, batch_size, shuffle):
-#     '''
+def make_iterator_unique(dot_number, set_t, batch_size, shuffle):
+    ''' 
+    Makes an iterator for this experiment. Iterator will output dot_numbers (to use as synthetic signal) and UNIQUE image indices.
     
-#     Makes an iterator for this experiment. It allows iteration through indices and the signals
+    '''
+        
+    img_indexes = np.load(f'{set_t}/index_{set_t}_LFP_split.npy').astype(np.int)
+    img_indexes = np.unique(img_indexes)
+    data_indices = torch.from_numpy(img_indexes)
     
-#     Returns an iterator.'''
-# #     img_indexes = np.load(f'../../sorted_data/LFP/{set_t}/index_{set_t}_LFP.npy').astype(np.int)
-#     data_indices = torch.from_numpy(img_indexes)
-#     data = dataset.TensorDataset(torch.from_numpy(nn_data.T), data_indices)
-    
-#     return dataset.DataLoader(data, batch_size, shuffle = shuffle)
+    dot_number = torch.from_numpy(dot_number)
+    data = dataset.TensorDataset(dot_number, data_indices)
+
+    return dataset.DataLoader(data, batch_size, shuffle = shuffle)
+
+
 
 def make_iterator(nn_data, set_t, batch_size, shuffle):
     '''
@@ -193,7 +185,7 @@ def make_iterator(nn_data, set_t, batch_size, shuffle):
     Returns an iterator.'''
     
     
-    img_indexes = np.load(f'../../sorted_data/LFP/{set_t}/index_{set_t}_LFP_split.npy').astype(np.int)
+    img_indexes = np.load(f'/{set_t}/index_{set_t}_LFP_split.npy').astype(np.int)
     data_indices = torch.from_numpy(img_indexes)
     data = dataset.TensorDataset(torch.from_numpy(nn_data.T), data_indices)
     
