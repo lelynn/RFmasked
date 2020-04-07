@@ -5,7 +5,7 @@ import torch.optim as optim
 import torch.utils.data as dataset
 from tqdm import tqdm
 
-import model_191 as model_file
+import model_file
 import module_split as module
 import RF_module as RF
 

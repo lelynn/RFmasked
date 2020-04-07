@@ -24,7 +24,7 @@ def make_unique_synth(set_t):
     
     gaus = module.load_gausdata()
     nn_seen = module.load_ydata()
-    data_indices = np.load(f'../../sorted_data/LFP/{set_t}/index_{set_t}_LFP_split.npy').astype(np.int)
+    data_indices = np.load(f'{set_t}/index_{set_t}_LFP_split.npy').astype(np.int)
     data_indices_unique = np.unique(data_indices)
 
     if set_t == 'training':
@@ -48,6 +48,6 @@ def make_unique_synth(set_t):
 
         inputs191_list = np.stack(inputs191_list)
 
-        np.save(f'../../sorted_data/LFP/{set_t}/{set_t}_synth191batch{batch_i}', inputs191_list)
+        np.save(f'{set_t}/{set_t}_synth191batch{batch_i}', inputs191_list)
 
         
