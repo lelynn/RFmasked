@@ -11,7 +11,7 @@ import RF_module as RF
 
 import os
 
-runname = 'synthetic_loaddot191'
+runname = 'synthetic_loaddot191_Adam1'
 device = 1
 cuda0 = torch.device(f'cuda:{device}')
 batch_size = 4
@@ -36,7 +36,7 @@ if __name__ == '__main__':
         model.cuda(device)
     # lossFunction = module.LossFunction(device)
     lossFunction = module.VGGLoss(device)
-    optimizer = optim.Adam(model.parameters())
+    optimizer = optim.Adam(model.parameters(), 0.1)
 
     hori_means, verti_means, std_avg = RF.extract_means_std()
 

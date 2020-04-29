@@ -47,7 +47,7 @@ if __name__ == '__main__':
         
 #     lossFunction = module.LossFunction(device)
     lossFunction = module.VGGLoss(device)
-    optimizer = optim.Adam(model.parameters())
+    optimizer = optim.Adam(model.parameters(), )
 
     hori_means, verti_means, std_avg = RF.extract_means_std()
     # -----

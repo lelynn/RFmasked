@@ -1,4 +1,6 @@
 # RFmasked
+GO [HERE](https://github.com/lelynn/RF_GANsynth) to see the incoorporation of the adversarial loss.
+
 
 Predicting masked areas of seen images based on the RF gaussians * brain signals. In this version, the provided test data of the dataset was not used. The privided training set was split using `splitting_data.ipynb` to create training and test sets. That is because the test set contained many repeats as shown in the below graph:
 ![imgcount](/imgs_count.png)

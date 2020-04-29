@@ -140,7 +140,7 @@ class ResblocksDeconv(nn.Module):
         self.debn1_1 = nn.BatchNorm2d(32)
 #         deconv3_2
         self.deconv1_2 = nn.Conv2d(32, 3, kernel_size=3, stride=1, padding=1)
-        self.debn1_2 = nn.BatchNorm2d(3)
+#         self.debn1_2 = nn.BatchNorm2d(3)
         
 
         self.in_channels = in_channels
@@ -256,8 +256,8 @@ class ResblocksDeconv(nn.Module):
         h = self.debn1_1(h)
         h = F.relu(h)
         h = self.deconv1_2(h)
-        h = self.debn1_2(h)
-        h = F.relu(h)
+#         h = self.debn1_2(h)
+#         h = F.relu(h)
 
         y = (torch.tanh(h) + 1) / 2
 

@@ -1,0 +1,10 @@
+/scratch/users/lynnle/MonkeyProject/git/models/RFmasked/module_split.py:39: UserWarning: volatile was removed and now has no effect. Use `with torch.no_grad():` instead.
+  param = Variable(param, volatile=True)
+Traceback (most recent call last):
+  File "RFconfidence_mask_split.py", line 56, in <module>
+    gaus = module.load_gausdata()
+  File "/scratch/users/lynnle/MonkeyProject/git/models/RFmasked/module_split.py", line 141, in load_gausdata
+    gaus_raw = np.load('multivariate_gaussians240_cropped.npy') # (192 x 240 x 240) is the shape
+  File "/home/lynnle/miniconda/lib/python3.7/site-packages/numpy/lib/npyio.py", line 415, in load
+    fid = open(os_fspath(file), "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'multivariate_gaussians240_cropped.npy'

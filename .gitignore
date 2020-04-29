@@ -5,3 +5,5 @@ cropped_images_tosplit.npy
 RFfit.mat
 multivariate_gaussians240_cropped.npy
 .ipynb_checkpoints
+**/__pycache__/
+SyntheticTraining/synthetic_loaddot191_Adam1/
