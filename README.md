@@ -1,4 +1,5 @@
 # RFmasked
+
 GO [HERE](https://github.com/lelynn/RF_GANsynth) to see the incoorporation of the adversarial loss.
 
 
